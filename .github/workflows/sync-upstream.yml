@@ -24,7 +24,7 @@ jobs:
           git remote add upstream https://github.com/sunnypilot/sunnypilot.git || true
           git fetch upstream ccnc-port
 
-          # 2. 合併官方最新的 ccnc-port 到你的分支
+          # 2. 合併官方最新的 ccnc-port 到你的個人分支
           git merge upstream/ccnc-port -m "chore: sync upstream ccnc-port updates" --no-edit || {
             echo "Merge conflict detected. Please resolve conflicts manually on your local PC."
             exit 1
