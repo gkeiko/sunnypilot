@@ -2,7 +2,6 @@ name: Sync Upstream CCNC PORT
 
 on:
   schedule:
-    # 每天凌晨 00:00 (UTC) 自動執行同步
     - cron: '0 0 * * *'
   workflow_dispatch:
 
@@ -21,12 +20,12 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           
-          # 1. 新增並抓取官方 sunnypilot 的 ccnc-port-prebuilt 分支
+          # 1. 新增並抓取官方 sunnypilot 的 ccnc-port 分支
           git remote add upstream https://github.com/sunnypilot/sunnypilot.git || true
-          git fetch upstream ccnc-port-prebuilt
+          git fetch upstream ccnc-port
 
-          # 2. 將官方 ccnc-port-prebuilt 最新程式碼合併至你的 ccnc-port 分支
-          git merge upstream/ccnc-port-prebuilt -m "chore: sync upstream ccnc-port-prebuilt updates" --no-edit || {
+          # 2. 合併官方最新的 ccnc-port 到你的分支
+          git merge upstream/ccnc-port -m "chore: sync upstream ccnc-port updates" --no-edit || {
             echo "Merge conflict detected. Please resolve conflicts manually on your local PC."
             exit 1
           }
